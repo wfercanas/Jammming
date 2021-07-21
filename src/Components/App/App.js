@@ -2,6 +2,10 @@ import React from 'react';
 
 import './App.css';
 
+import { SearchBar } from '../SearchBar';
+import { SearchResults } from '../SearchResults';
+import { Playlist } from '../Playlist';
+
 function App() {
   return (
     <div>
@@ -9,10 +13,10 @@ function App() {
         Ja<span className="highlight">mmm</span>ing
       </h1>
       <div className="App">
-        {/* <!-- Add a SearchBar component --> */}
+        <SearchBar />
         <div className="App-playlist">
-          {/* <!-- Add a SearchResults component --> */}
-          {/* <!-- Add a Playlist component --> */}
+          <SearchResults />
+          <Playlist />
         </div>
       </div>
     </div>

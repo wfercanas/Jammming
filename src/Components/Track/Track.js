@@ -20,9 +20,7 @@ export class Track extends React.Component {
             {/* <!-- track artist will go here--> | <!-- track album will go here -->*/}
           </p>
         </div>
-        <button className="Track-action">
-          {/* <!-- + or - will go here --> */}
-        </button>
+        <button className="Track-action">{this.renderAction()}</button>
       </div>
     );
   }
