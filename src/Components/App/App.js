@@ -68,8 +68,10 @@ export class App extends React.Component {
     ) {
       return;
     } else {
+      const currentPlaylist = this.state.playlistTracks;
+      currentPlaylist.push(track);
       this.setState({
-        playlistTracks: [...this.state.playlistTracks, track],
+        playlistTracks: currentPlaylist,
       });
     }
   }
