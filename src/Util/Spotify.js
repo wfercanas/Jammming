@@ -1,6 +1,6 @@
 import CLIENT_ID from '../config';
 
-const REDIRECT_URI = 'http://localhost:3000/';
+const REDIRECT_URI = 'https://wfercanas.github.io/Jammming/';
 let USER_ACCESS_TOKEN;
 
 const Spotify = {
