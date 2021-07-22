@@ -42,7 +42,7 @@ export class Track extends React.Component {
             {this.props.track.artist} {this.props.track.album}
           </p>
         </div>
-        <button className="Track-action">{this.renderAction()}</button>
+        <div className="Track-action">{this.renderAction()}</div>
       </div>
     );
   }
