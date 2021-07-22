@@ -9,7 +9,11 @@ export class SearchResults extends React.Component {
     return (
       <div className="SearchResults">
         <h2>Results</h2>
-        <TrackList tracks={this.props.results} onAdd={this.props.onAdd} />
+        <TrackList
+          tracks={this.props.results}
+          onAdd={this.props.onAdd}
+          isRemoval={false}
+        />
       </div>
     );
   }
