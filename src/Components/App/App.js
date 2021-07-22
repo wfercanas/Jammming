@@ -1,4 +1,5 @@
 import React from 'react';
+import Spotify from '../../Util/Spotify';
 
 import './App.css';
 
@@ -100,7 +101,9 @@ export class App extends React.Component {
   }
 
   search(term) {
-    console.log(term);
+    Spotify.search(term).then((result) => {
+      this.setState({ searchResults: result });
+    });
   }
 
   render() {
