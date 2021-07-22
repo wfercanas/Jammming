@@ -31,7 +31,7 @@ export class App extends React.Component {
         },
       ],
       playlistName: 'My Favorites',
-      playlistTrack: [
+      playlistTracks: [
         {
           name: 'First song',
           artist: 'Ed Sheeran',
@@ -70,7 +70,10 @@ export class App extends React.Component {
           <SearchBar />
           <div className="App-playlist">
             <SearchResults results={this.state.searchResults} />
-            <Playlist />
+            <Playlist
+              playlistName={this.state.playlistName}
+              playlistTracks={this.state.playlistTracks}
+            />
           </div>
         </div>
       </div>
