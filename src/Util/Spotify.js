@@ -1,4 +1,5 @@
-const CLIENT_ID = '0cef9e37848941a088a568e8edee8596';
+import CLIENT_ID from '../config';
+
 const REDIRECT_URI = 'http://localhost:3000/';
 let USER_ACCESS_TOKEN;
 
@@ -14,7 +15,6 @@ const Spotify = {
     if (accessTokenMatch && expireInMatch) {
       USER_ACCESS_TOKEN = accessTokenMatch[1];
       const expiresIn = Number(expireInMatch[1]);
-
       // This clears the parameters, allowing us to grab a new access token when it expires
       window.setTimeout(() => (USER_ACCESS_TOKEN = ''), expiresIn * 1000);
       window.history.pushState('Access Token', null, '/');
@@ -47,6 +47,43 @@ const Spotify = {
             };
           });
         }
+      });
+  },
+
+  savePlaylist(name, trackURIs) {
+    if (!name || !trackURIs.length) {
+      return;
+    }
+
+    const accessToken = Spotify.getAccessToken();
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+    let userID;
+
+    return fetch(`https://api.spotify.com/v1/me`, {
+      headers: headers,
+    })
+      .then((response) => response.json())
+      .then((jsonResponse) => {
+        userID = jsonResponse.id;
+        return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
+          headers: headers,
+          method: 'POST',
+          body: JSON.stringify({ name: name }),
+        })
+          .then((response) => response.json())
+          .then((jsonResponse) => {
+            const playlistID = jsonResponse.id;
+            return fetch(
+              `https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`,
+              {
+                headers: headers,
+                method: 'POST',
+                body: JSON.stringify({ uris: trackURIs }),
+              }
+            );
+          });
       });
   },
 };
